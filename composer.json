@@ -1,0 +1,26 @@
+{
+	"name": "needim/wdt-emoji-bundle",
+	"description": "Slack like emoji selector with apple, twitter, google, emojione and custom emoji support.",
+	"type": "library",
+	"license": "MIT",
+	"homepage": "http://ned.im/wdt-emoji-bundle",
+	"keywords": [
+		"emoji",
+		"twemoji",
+		"apple",
+		"google",
+		"emojione",
+		"emoticon",
+		"slack",
+		"javascript",
+		"wdt"
+	],
+	"authors": [
+		{
+			"name": "Nedim Arabacı",
+			"homepage": "https://ned.im",
+			"role": "Developer"
+		}
+	],
+	"minimum-stability": "dev"
+}

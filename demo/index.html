@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <title>wdt-emoji-bundle Demo</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"/>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../wdt-emoji-bundle.css"/>
+    <script type="text/javascript" src="../emoji.js"></script>
+    <script type="text/javascript" src="../wdt-emoji-bundle.js"></script>
+
+    <style type="text/css">
+        body {
+            font-family: 'Open Sans', sans-serif;
+            overflow-y: scroll;
+        }
+
+        #fullname-output,
+        #comment-output,
+        #contenteditable-output,
+        #contenteditable2-output {
+            min-height: 43px;
+            padding: 10px;
+            background-color: rgba(255, 255, 0, 0.14);
+        }
+
+        #head-title .emoji-outer {
+            width: 64px;
+            height: 64px;
+        }
+
+        .form-control {
+            padding-right: 27px;
+        }
+
+        div.form-control {
+            height: auto;
+        }
+
+        .todo-list li {
+            line-height: 26px;
+        }
+
+        .bottom-text .emoji-sizer {
+            width: 14px;
+            height: 14px;
+        }
+    </style>
+
+
+</head>
+<body>
+
+<div class="container" id="app">
+    <div class="row">
+        <div class="col-md-6 col-md-push-3 col-xs-12" style="padding-top: 10px">
+
+            <h2 id="head-title" class="header text-center">wdt-emoji-bundle <br><br> :lollipop:</h2>
+            <form>
+                <div class="form-group">
+                    <label>input[type=text]</label>
+                    <input id="fullname" type="text" value=";) Hey! check :robot_face: this. :dark_sunglasses: :sunny:  :nerd_face: :dog:  :cat:  :hamster:  :lion_face:" class="form-control wdt-emoji-bundle-enabled">
+                </div>
+                <div class="form-group">
+                    <label>input[type=text] - output</label>
+                    <div id="fullname-output"></div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label>textarea</label>
+                    <textarea id="comment" name="comment" class="form-control wdt-emoji-bundle-enabled" rows="3">;) Hey! check :robot_face: this. :dark_sunglasses: :sunny:  :nerd_face: :dog:  :cat:  :hamster:  :lion_face:</textarea>
+                </div>
+                <div class="form-group">
+                    <label>textarea - output</label>
+                    <div id="comment-output"></div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label>div:contenteditable</label>
+                    <div id="contenteditable" class="form-control wdt-emoji-bundle-enabled" contentEditable="true">;) <strong>Hey!</strong> check :robot_face: this. :dark_sunglasses: :sunny:  :nerd_face: :dog:  :cat:  :hamster:  :lion_face:</div>
+                </div>
+                <div class="form-group">
+                    <label>div:contenteditable - output</label>
+                    <div id="contenteditable-output"></div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label>div:contenteditable 2</label>
+                    <div id="contenteditable2" class="form-control wdt-emoji-bundle-enabled" contentEditable="true">;) <strong>Hey!</strong> check :robot_face: this.</div>
+                </div>
+                <div class="form-group">
+                    <label>div:contenteditable 2 - output</label>
+                    <div id="contenteditable2-output"></div>
+                </div>
+                <hr>
+                <div class="form-group text-center">
+                    <label>Change emoji set</label>
+                    <div>
+                        <a class="btn btn-default change-emoji-type" data-emoji-type="apple" href="#apple">Apple</a>
+                        <a class="btn btn-default change-emoji-type" data-emoji-type="google" href="#google">Google</a>
+                        <a class="btn btn-default change-emoji-type" data-emoji-type="twitter" href="#twitter">Twitter</a>
+                        <a class="btn btn-default change-emoji-type" data-emoji-type="emojione" href="#emojione">Emojione</a>
+                    </div>
+                    <hr>
+                    <div>
+                        Twitter emojiset: <a href="https://twemoji.maxcdn.com/">twemoji</a>
+                        <br>
+                        Emojione emojiset: <a href="https://github.com/Ranks/emojione">emojione</a>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="form-group">
+                    <label>TODO:</label>
+                    <div>
+                        <ul class="todo-list">
+                            <li>Documentation. :neutral_face:</li>
+                            <li>Responsive Improvements. :wink:</li>
+                            <li>Better popup positioning, repositioning (window.resize) :+1:</li>
+                            <li>Frequently used emoji list with localstorage and/or API. :robot_face:</li>
+                            <li>Provide more events; open, close, pickeropen, pickerclose etc. :tada: </li>
+                            <li>Custom emoji support. :wine_glass:</li>
+                            <li>Skin color support for apple/ios. :lion_face:</li>
+                            <li>Custom scrollbar. :bug:</li>
+                            <li>Better contenteditable support, WYSIWYG? :nerd_face:</li>
+                            <li>Performance improvements. :stopwatch:</li>
+                            <li>Check browser compatibilities. :joystick:</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group text-center bottom-text">
+                    <br>
+                    <p>I :heart: opensource.</p>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="wdt-emoji-popup">
+    <a href="#" class="wdt-emoji-popup-mobile-closer"> &times; </a>
+	<div class="wdt-emoji-menu-content">
+		<div id="wdt-emoji-menu-header">
+            <a class="wdt-emoji-tab active" data-group-name="Recent"></a>
+            <a class="wdt-emoji-tab" data-group-name="People"></a>
+            <a class="wdt-emoji-tab" data-group-name="Nature"></a>
+            <a class="wdt-emoji-tab" data-group-name="Foods"></a>
+            <a class="wdt-emoji-tab" data-group-name="Activity"></a>
+            <a class="wdt-emoji-tab" data-group-name="Places"></a>
+            <a class="wdt-emoji-tab" data-group-name="Objects"></a>
+            <a class="wdt-emoji-tab" data-group-name="Symbols"></a>
+            <a class="wdt-emoji-tab" data-group-name="Flags"></a>
+            <a class="wdt-emoji-tab" data-group-name="Custom"></a>
+        </div>
+		<div class="wdt-emoji-scroll-wrapper">
+            <div id="wdt-emoji-menu-items">
+                <input id="wdt-emoji-search" type="text" placeholder="Search">
+                <h3 id="wdt-emoji-search-result-title">Search Results</h3>
+                <div class="wdt-emoji-sections"></div>
+                <div id="wdt-emoji-no-result">No emoji found</div>
+            </div>
+        </div>
+		<div id="wdt-emoji-footer">
+            <div id="wdt-emoji-preview">
+                <span id="wdt-emoji-preview-img"></span>
+                <div id="wdt-emoji-preview-text">
+                    <span id="wdt-emoji-preview-name"></span><br>
+                    <span id="wdt-emoji-preview-aliases"></span>
+                </div>
+            </div>
+
+            <div id="wdt-emoji-preview-bundle">
+                <span>WDT Emoji Bundle</span>
+            </div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    (function() {
+
+
+        wdtEmojiBundle.defaults.emojiSheets = {
+            'apple'   : '../sheets/sheet_apple_64.png',
+            'google'  : '../sheets/sheet_google_64.png',
+            'twitter' : '../sheets/sheet_twitter_64.png',
+            'emojione': '../sheets/sheet_emojione_64.png'
+        };
+
+        wdtEmojiBundle.init('.wdt-emoji-bundle-enabled');
+
+        var typeChangers = document.querySelectorAll('.change-emoji-type');
+        for (var i = 0; i < typeChangers.length; i++) {
+            typeChangers[i].addEventListener('click', function(e) {
+                wdtEmojiBundle.changeType(this.dataset.emojiType);
+                return false;
+            });
+        }
+        var ev = new Event('input');
+        document.getElementById('fullname').addEventListener('input', function() {
+            document.getElementById('fullname-output').innerHTML = wdtEmojiBundle.render(this.value);
+        });
+        document.getElementById('fullname').dispatchEvent(ev);
+
+        document.getElementById('comment').addEventListener('input', function() {
+            document.getElementById('comment-output').innerHTML = wdtEmojiBundle.render(this.value);
+        });
+        document.getElementById('comment').dispatchEvent(ev);
+
+
+        document.getElementById('contenteditable').addEventListener('input', function() {
+            document.getElementById('contenteditable-output').innerHTML = wdtEmojiBundle.render(this.innerHTML);
+        });
+        document.getElementById('contenteditable').dispatchEvent(ev);
+
+        document.getElementById('contenteditable2').addEventListener('input', function() {
+            document.getElementById('contenteditable2-output').innerHTML = wdtEmojiBundle.render(this.innerHTML);
+        });
+        document.getElementById('contenteditable2').dispatchEvent(ev);
+
+        document.getElementById('head-title').innerHTML = wdtEmojiBundle.render(document.getElementById('head-title').innerHTML);
+        document.querySelector('.todo-list').innerHTML = wdtEmojiBundle.render(document.querySelector('.todo-list').innerHTML);
+        document.querySelector('.bottom-text').innerHTML = wdtEmojiBundle.render(document.querySelector('.bottom-text').innerHTML);
+
+    })();
+</script>
+</body>
+</html>
