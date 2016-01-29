@@ -154,6 +154,14 @@
 
 			if (bodyRect.width < 415) { // mobile specific @todo - [needim] - better mobile detection needed
 				addClass(wdtEmojiBundle.popup, 'wdt-emoji-mobile');
+
+				return {
+					left: '0px',
+					bottom: '0px',
+					top: 'auto',
+					width: '100%',
+					position: 'fixed'
+				}
 			}
 
 			return pos;
