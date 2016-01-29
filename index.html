@@ -4,18 +4,20 @@
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Slack like emoji selector with apple, twitter, google, emojione and custom emoji support.">
+    <meta name="keywords" content="wdt, wdt-emoji-bundle, emoji, plugin, opensource, open, source, javascript, emoji, emoticon">
+    <meta name="author" content="Nedim Arabacı (http://ned.im)">
 
-
-    <title>wdt-emoji-bundle Demo</title>
+    <title>wdt-emoji-bundle - Demo</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"/>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" href="../wdt-emoji-bundle.css"/>
-    <script type="text/javascript" src="../emoji.min.js"></script>
-    <script type="text/javascript" src="../wdt-emoji-bundle.min.js"></script>
+    <link rel="stylesheet" href="wdt-emoji-bundle.css"/>
+    <script type="text/javascript" src="emoji.min.js"></script>
+    <script type="text/javascript" src="wdt-emoji-bundle.min.js"></script>
 
     <style type="text/css">
         body {
@@ -53,6 +55,10 @@
             width: 14px;
             height: 14px;
         }
+
+        .project-links {
+            padding: 30px 0;
+        }
     </style>
 
 
@@ -64,6 +70,17 @@
         <div class="col-md-6 col-md-push-3 col-xs-12" style="padding-top: 10px">
 
             <h2 id="head-title" class="header text-center">wdt-emoji-bundle <br><br> :lollipop:</h2>
+
+            <div class="project-links text-center">
+                <iframe src="http://ned.im/github-buttons/ghbtn.html?user=needim&amp;repo=wdt-emoji-bundle&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="35px"></iframe>
+
+                <iframe src="http://ned.im/github-buttons/ghbtn.html?user=needim&amp;repo=wdt-emoji-bundle&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="35px"></iframe>
+
+                <iframe src="http://ned.im/github-buttons/ghbtn.html?user=needim&amp;type=follow&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165px" height="35px"></iframe>
+
+                <iframe src="http://ned.im/github-buttons/ghbtn.html?user=needim&amp;repo=wdt-emoji-bundle&amp;type=download&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="140px" height="35px"></iframe>
+            </div>
+
             <form>
                 <div class="form-group">
                     <label>input[type=text]</label>
@@ -188,12 +205,11 @@
 <script type="text/javascript">
     (function() {
 
-
         wdtEmojiBundle.defaults.emojiSheets = {
-            'apple'   : '../sheets/sheet_apple_64.png',
-            'google'  : '../sheets/sheet_google_64.png',
-            'twitter' : '../sheets/sheet_twitter_64.png',
-            'emojione': '../sheets/sheet_emojione_64.png'
+            'apple'   : './sheets/sheet_apple_64.png',
+            'google'  : './sheets/sheet_google_64.png',
+            'twitter' : './sheets/sheet_twitter_64.png',
+            'emojione': './sheets/sheet_emojione_64.png'
         };
 
         wdtEmojiBundle.init('.wdt-emoji-bundle-enabled');
@@ -233,5 +249,22 @@
 
     })();
 </script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-46744044-1', 'auto');
+        ga('send', 'pageview', '/wdt-emoji-bundle');
+    </script>
+
 </body>
 </html>

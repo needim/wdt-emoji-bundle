@@ -1,9 +1,0 @@
-{
-	"name": "wdt-emoji-bundle",
-	"main": "wdt-emoji-bundle.js",
-	"ignore": [],
-	"authors": [
-		"Nedim Arabacı"
-	],
-	"description": "Slack like emoji selector with apple, twitter, google, emojione and custom emoji support."
-}
