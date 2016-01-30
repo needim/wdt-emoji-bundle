@@ -19,39 +19,49 @@
 
     <style type="text/css">
         body {
-            font-family: 'Open Sans', sans-serif;
-            overflow-y: scroll;
+          font-family: 'Open Sans', sans-serif;
+          overflow-y: scroll;
         }
 
         #fullname-output,
         #comment-output,
         #contenteditable-output,
         #contenteditable2-output {
-            min-height: 43px;
-            padding: 10px;
-            background-color: rgba(255, 255, 0, 0.14);
+          min-height: 43px;
+          padding: 10px;
+          background-color: rgba(255, 255, 0, 0.14);
         }
 
         #head-title .emoji-outer {
-            width: 64px;
-            height: 64px;
+          width: 64px;
+          height: 64px;
         }
 
         .form-control {
-            padding-right: 27px;
+          padding-right: 27px;
         }
 
         div.form-control {
-            height: auto;
+          height: auto;
         }
 
         .todo-list li {
-            line-height: 26px;
+          line-height: 26px;
         }
 
         .bottom-text .emoji-sizer {
-            width: 14px;
-            height: 14px;
+          width: 14px;
+          height: 14px;
+        }
+
+        .mobile-notice {
+          background: #ffff00;
+          padding: 10px;
+          border-radius: 20px
+        }
+
+        .set-changers {
+          margin: 20px 0;
         }
     </style>
 
@@ -64,6 +74,23 @@
         <div class="col-md-6 col-md-push-3 col-xs-12" style="padding-top: 10px">
 
             <h2 id="head-title" class="header text-center">wdt-emoji-bundle <br><br> :lollipop:</h2>
+
+            <h4 class="text-center">Slack like emoji picker with apple, twitter, google, emojione support.</h4>
+
+            <p class="text-center visible-xs visible-sm hidden-md hidden-lg mobile-notice">
+              <strong> Preferably emoji bundle's pickers disabled for small screens. <br> You can use your native keyboard's picker.</strong>
+            </p>
+
+            <div class="text-center set-changers">
+              <label>Change emoji set</label>
+              <div>
+                  <a class="btn btn-default change-emoji-type" data-emoji-type="apple" href="#apple">Apple</a>
+                  <a class="btn btn-default change-emoji-type" data-emoji-type="google" href="#google">Google</a>
+                  <a class="btn btn-default change-emoji-type" data-emoji-type="twitter" href="#twitter">Twitter</a>
+                  <a class="btn btn-default change-emoji-type" data-emoji-type="emojione" href="#emojione">Emojione</a>
+              </div>
+            </div>
+
             <form>
                 <div class="form-group">
                     <label>input[type=text]</label>
@@ -102,14 +129,6 @@
                 </div>
                 <hr>
                 <div class="form-group text-center">
-                    <label>Change emoji set</label>
-                    <div>
-                        <a class="btn btn-default change-emoji-type" data-emoji-type="apple" href="#apple">Apple</a>
-                        <a class="btn btn-default change-emoji-type" data-emoji-type="google" href="#google">Google</a>
-                        <a class="btn btn-default change-emoji-type" data-emoji-type="twitter" href="#twitter">Twitter</a>
-                        <a class="btn btn-default change-emoji-type" data-emoji-type="emojione" href="#emojione">Emojione</a>
-                    </div>
-                    <hr>
                     <div>
                         Twitter emojiset: <a href="https://twemoji.maxcdn.com/">twemoji</a>
                         <br>
@@ -186,50 +205,55 @@
 </div>
 
 <script type="text/javascript">
-    (function() {
+    (function () {
 
+      wdtEmojiBundle.defaults.emojiSheets = {
+        'apple'   : '../sheets/sheet_apple_64.png',
+        'google'  : '../sheets/sheet_google_64.png',
+        'twitter' : '../sheets/sheet_twitter_64.png',
+        'emojione': '../sheets/sheet_emojione_64.png'
+      };
 
-        wdtEmojiBundle.defaults.emojiSheets = {
-            'apple'   : '../sheets/sheet_apple_64.png',
-            'google'  : '../sheets/sheet_google_64.png',
-            'twitter' : '../sheets/sheet_twitter_64.png',
-            'emojione': '../sheets/sheet_emojione_64.png'
-        };
+      wdtEmojiBundle.init('.wdt-emoji-bundle-enabled');
 
-        wdtEmojiBundle.init('.wdt-emoji-bundle-enabled');
-
-        var typeChangers = document.querySelectorAll('.change-emoji-type');
-        for (var i = 0; i < typeChangers.length; i++) {
-            typeChangers[i].addEventListener('click', function(e) {
-                wdtEmojiBundle.changeType(this.dataset.emojiType);
-                return false;
-            });
-        }
-        var ev = new Event('input');
-        document.getElementById('fullname').addEventListener('input', function() {
-            document.getElementById('fullname-output').innerHTML = wdtEmojiBundle.render(this.value);
+      var typeChangers = document.querySelectorAll('.change-emoji-type');
+      for (var i = 0; i < typeChangers.length; i++) {
+        typeChangers[i].addEventListener('click', function () {
+          wdtEmojiBundle.changeType(this.dataset.emojiType);
+          return false;
         });
-        document.getElementById('fullname').dispatchEvent(ev);
+      }
+      var ev = new Event('input');
 
-        document.getElementById('comment').addEventListener('input', function() {
-            document.getElementById('comment-output').innerHTML = wdtEmojiBundle.render(this.value);
-        });
-        document.getElementById('comment').dispatchEvent(ev);
+      // ------------------------------------------------------
+      document.getElementById('fullname').addEventListener('input', function () {
+        document.getElementById('fullname-output').innerHTML = wdtEmojiBundle.render(this.value);
+      });
+      document.getElementById('fullname').dispatchEvent(ev);
+      // ------------------------------------------------------
 
+      // ------------------------------------------------------
+      document.getElementById('comment').addEventListener('input', function () {
+        document.getElementById('comment-output').innerHTML = wdtEmojiBundle.render(this.value);
+      });
+      document.getElementById('comment').dispatchEvent(ev);
+      // ------------------------------------------------------
 
-        document.getElementById('contenteditable').addEventListener('input', function() {
-            document.getElementById('contenteditable-output').innerHTML = wdtEmojiBundle.render(this.innerHTML);
-        });
-        document.getElementById('contenteditable').dispatchEvent(ev);
+      document.getElementById('contenteditable').addEventListener('input', function () {
+        document.getElementById('contenteditable-output').innerHTML = wdtEmojiBundle.render(this.innerHTML);
+      });
+      document.getElementById('contenteditable').dispatchEvent(ev);
 
-        document.getElementById('contenteditable2').addEventListener('input', function() {
-            document.getElementById('contenteditable2-output').innerHTML = wdtEmojiBundle.render(this.innerHTML);
-        });
-        document.getElementById('contenteditable2').dispatchEvent(ev);
+      // ------------------------------------------------------
+      document.getElementById('contenteditable2').addEventListener('input', function () {
+        document.getElementById('contenteditable2-output').innerHTML = wdtEmojiBundle.render(this.innerHTML);
+      });
+      document.getElementById('contenteditable2').dispatchEvent(ev);
+      // ------------------------------------------------------
 
-        document.getElementById('head-title').innerHTML = wdtEmojiBundle.render(document.getElementById('head-title').innerHTML);
-        document.querySelector('.todo-list').innerHTML = wdtEmojiBundle.render(document.querySelector('.todo-list').innerHTML);
-        document.querySelector('.bottom-text').innerHTML = wdtEmojiBundle.render(document.querySelector('.bottom-text').innerHTML);
+      document.getElementById('head-title').innerHTML = wdtEmojiBundle.render(document.getElementById('head-title').innerHTML);
+      document.querySelector('.todo-list').innerHTML = wdtEmojiBundle.render(document.querySelector('.todo-list').innerHTML);
+      document.querySelector('.bottom-text').innerHTML = wdtEmojiBundle.render(document.querySelector('.bottom-text').innerHTML);
 
     })();
 </script>

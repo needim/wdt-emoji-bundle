@@ -530,7 +530,7 @@
    * @returns {string}
    */
   wdtEmojiBundle.render = function (text) {
-    return emoji.replace_colons(emoji.replace_emoticons(text))
+    return emoji.replace_colons(emoji.replace_emoticons(emoji.replace_unified(text)));
   };
 
   /**
@@ -574,8 +574,8 @@
   /**
    *
    * @param el
-   * @param s
-   * @param fn
+   * @param events
+   * @param cb
    */
   var addListenerMulti = function (el, events, cb) {
     events = events.split(' ');
