@@ -19,6 +19,8 @@
     <script type="text/javascript" src="emoji.min.js"></script>
     <script type="text/javascript" src="wdt-emoji-bundle.min.js"></script>
 
+    <script type="text/javascript" src="share.min.js"></script>
+
     <style type="text/css">
         body {
           font-family: 'Open Sans', sans-serif;
@@ -84,6 +86,16 @@
           line-height: 25px;
           font-weight: bold;
         }
+
+        .sharer-btn {
+          display: inline-block !important;
+          position: relative;
+          top: 2px;
+        }
+        .sharer-btn label {
+          padding: 6px 10px !important;
+          background: #EEEEEE !important;
+        }
     </style>
 
 
@@ -99,9 +111,8 @@
             <h4 class="text-center">Slack like emoji picker with <br> <strong>apple</strong>, <strong>twitter</strong>, <strong>google</strong>, <strong>emojione</strong> support.</h4>
 
             <p class="text-center">
-
               <a class="btn btn-warning" href="#docs">Documentation</a>
-
+              <span class="sharer-btn text-center"></span>
             </p>
 
             <p class="text-center visible-xs visible-sm hidden-md hidden-lg mobile-notice">
@@ -280,6 +291,10 @@
                 </div>
                 <div class="form-group text-center bottom-text">
                     <br>
+                    <div class="text-center">
+                      <span class="sharer-btn text-center"></span>
+                    </div>
+                    <br>
                     <p>I :heart: opensource.</p>
                 </div>
             </form>
@@ -378,6 +393,30 @@
       document.querySelector('.todo-list').innerHTML = wdtEmojiBundle.render(document.querySelector('.todo-list').innerHTML);
       document.querySelector('.bottom-text').innerHTML = wdtEmojiBundle.render(document.querySelector('.bottom-text').innerHTML);
       document.querySelector('#doc-render-output').innerHTML = wdtEmojiBundle.render(':) 🙊');
+
+
+      new Share(".sharer-btn", {
+        title: 'wdt-emoji-bundle - Slack like emoji picker.',
+        description: 'Slack like emoji picker with apple, twitter, google, emojione support.',
+        image: 'https://cdn.rawgit.com/needim/wdt-emoji-bundle/master/wdt-emoji-bundle.gif',
+        networks: {
+          pinterest: {
+            enabled: false
+          },
+          facebook: {
+            load_sdk: true,
+            app_id: '198259823578303',
+            title: 'wdt-emoji-bundle - Slack like emoji picker.',
+            caption: 'wdt-emoji-bundle - Slack like emoji picker.',
+            description: 'Slack like emoji picker with apple, twitter, google, emojione support.',
+            image: 'https://cdn.rawgit.com/needim/wdt-emoji-bundle/master/wdt-emoji-bundle.gif'
+          },
+          twitter: {
+            description: encodeURIComponent('Slack like #emoji picker #plugin with #apple, #twitter, #google, #emojione support. via @needim')
+          }
+        }
+      });
+
 
     })();
 </script>
