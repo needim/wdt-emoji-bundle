@@ -26,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/needim/wdt-emoji-bundle/issues"
   },
-  "main": "wdt-emoji-bunle.js",
+  "main": "wdt-emoji-bundle.js",
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.0",
