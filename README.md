@@ -4,11 +4,79 @@ Slack like emoji selector with apple/ios, twitter/twemoji, google, emojione and 
 
 Thanks to Cal Henderson @iamcal.
 
-### Demo
+# Demo
 
 ![wdt-emoji-bundle gif](https://raw.githubusercontent.com/needim/wdt-emoji-bundle/master/wdt-emoji-bundle.gif "wdt-emoji-bundle gif")
 
-### TODO:
+# Installation
+
+Use one of the following:
+* npm `npm i wdt-emoji-bundle`
+* bower `bower i wdt-emoji-bundle`
+* pull in the source directly, load `wdt-emoji-bundle.min.js`, `wdt-emoji-bundle.css` and the `sheets/` directory
+
+## Initialize
+
+```javascript
+wdtEmojiBundle.init('.your-inputs-selector');
+```
+
+### Advanced configuration
+
+Tell the widget where to get the sheets from
+
+```javascript
+wdtEmojiBundle.defaults.emojiSheets.apple = './sheet_apple.png';        // default /sheets/sheet_apple_64.png
+wdtEmojiBundle.defaults.emojiSheets.google = './sheet_google.png';      // default /sheets/sheet_google_64.png
+wdtEmojiBundle.defaults.emojiSheets.twitter = './sheet_twitter.png';    // default /sheets/sheet_twitter_64.png
+wdtEmojiBundle.defaults.emojiSheets.emojione = './sheet_emojione.png';  // default /sheets/sheet_emojione_64.png
+```
+
+===
+
+Set emoji set default sheet
+
+```javascript
+wdtEmojiBundle.defaults.type = 'apple';
+```
+
+===
+
+Hover color classes for picker's emoji's
+
+```javascript
+wdtEmojiBundle.defaults.pickerColors = [
+  'green', 'pink', 'yellow', 'blue', 'gray'
+];
+```
+===
+
+Picker tab section's orders, higher is first. Bundle render the sections according to this values.
+
+```
+wdtEmojiBundle.defaults.sectionOrders = { 
+  'Recent'  : 10, 
+  'Custom'  : 9, 
+  'People'  : 8, 
+  'Nature'  : 7, 
+  'Foods'   : 6, 
+  'Activity': 5, 
+  'Places'  : 4, 
+  'Objects' : 3, 
+  'Symbols' : 2, 
+  'Flags'   : 1
+};
+```
+
+### API
+
+Render function takes any html string and convert to emojies based on the current bundle emoji type. (apple, google, twitter, emojione)
+
+```javascript
+var output = wdtEmojiBundle.render('Lorem ipsum :) :speak_no_evil:');
+```
+
+# TODO:
 
 - Documentation :)
 - Responsive Improvements.
