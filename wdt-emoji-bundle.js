@@ -469,7 +469,7 @@
   wdtEmojiBundle.dispatchHandlers = {
     'select'         : [],
     'afterSelect'    : [],
-    'afterPickerOpen': []
+    'afterPickerOpen': [] // not implemented
   };
 
   /**
