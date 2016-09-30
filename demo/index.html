@@ -216,6 +216,10 @@
 
       wdtEmojiBundle.init('.wdt-emoji-bundle-enabled');
 
+      wdtEmojiBundle.on('afterSelect', function (a, b) {
+        console.log('afterSelect', a, b);
+      });
+
       var typeChangers = document.querySelectorAll('.change-emoji-type');
       for (var i = 0; i < typeChangers.length; i++) {
         typeChangers[i].addEventListener('click', function () {

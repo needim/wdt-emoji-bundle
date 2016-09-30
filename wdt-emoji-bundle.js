@@ -345,6 +345,7 @@
       var ce = new Event('input');
       wdtEmojiBundle.input.dispatchEvent(ce);
       wdtEmojiBundle.close();
+      fire('afterSelect', {el: wdtEmojiBundle.input, event: event, emoji: ':' + this.dataset.wdtEmojiShortname + ':'});
 
       return false;
     });

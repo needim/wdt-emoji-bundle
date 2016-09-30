@@ -76,6 +76,17 @@ Render function takes any html string and convert to emojies based on the curren
 var output = wdtEmojiBundle.render('Lorem ipsum :) :speak_no_evil:');
 ```
 
+===
+
+Event listeners: 'select', 'afterSelect', 'afterPickerOpen'
+
+```javascript
+wdtEmojiBundle.on('afterSelect', function (event) {
+  console.log('element', event.el);
+  console.log('emoji', event.emoji);
+})
+```
+
 # TODO:
 
 - Documentation :)
