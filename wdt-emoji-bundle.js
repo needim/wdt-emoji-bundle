@@ -121,9 +121,54 @@
 
       addClass(element.parentNode, 'wdt-emoji-picker-parent');
       element.parentNode.appendChild(p);
+      if (hasClass(element, 'wdt-emoji-open-on-colon')) {
+        element.addEventListener('keyup', function (evt) {
+          // colon key 186
+          if (evt.keyCode === 186) {
+            wdtEmojiBundle.onColonKey(evt)
+          }
+        })
+      }
       addClass(element, 'wdt-emoji-picker-ready');
     }
   };
+
+  /**
+   *
+   * @param ev
+   * @returns {void}
+   */
+  wdtEmojiBundle.searchAfterColon = function (ev) {
+    console.log('debug searchAfterColon')
+    var element = ev.target,
+        val = element.value,
+        matches = val.match(/[^:]*$/g), //select everything after last : character
+        text = matches[0],
+        self = this;
+
+    if (self.searchInput) {
+      self.searchInput.value = text;
+      wdtEmojiBundle.search(text);
+    }
+  }
+
+
+  /**
+   * Fires when a user enters the `:` key
+   * @param ev
+   * @returns {boolean}
+   */
+  wdtEmojiBundle.onColonKey = function (ev) {
+    var element = ev.target,
+        parent = findParent(element, 'wdt-emoji-picker-parent');
+    console.log('debug onColonKey', hasClass(this.popup, 'wdt-emoji-picker-open'))
+    debugger
+    if (!hasClass(this.popup, 'wdt-emoji-picker-open')) {
+      console.log('debug onColonKey attachSearch')
+      element.addEventListener('keyup', wdtEmojiBundle.searchAfterColon.bind(this))
+      wdtEmojiBundle.openPicker(ev)
+    }
+  }
 
   /**
    *
@@ -320,6 +365,7 @@
    * @param element
    */
   wdtEmojiBundle.closePicker = function (element) {
+    console.log('debug closePicker')
     removeClass(element, 'wdt-emoji-picker-open');
     element.innerHTML = emoji.replace_colons(':smile:');
   };
@@ -715,15 +761,30 @@
   var replaceText = function (el, selection, emo) {
     var val = el.value || el.innerHTML || '';
 
-    if (selection.ce) { // if contenteditable
-      el.focus();
-      document.execCommand('insertText', false, emo);
+    // no actual selection
+    // see if there is a colon followed by a search
+    // that needs replacing
+    if (selection.start === selection.end) {
+      if (selection.ce) { // if contenteditable
+        // TODO
+        el.focus();
+        document.execCommand('insertText', false, emo);
+      } else {
+        el.value = val.replace(/(:\w*:?)(?!.*:)/, emo)
+        el.focus();
+      }
+    // there is a selection - replace it all with the emoji
     } else {
-      el.value = val.substring(0, selection.start) + emo + val.substring(selection.end, selection.len);
+      if (selection.ce) { // if contenteditable
+        el.focus();
+        document.execCommand('insertText', false, emo);
+      } else {
+        el.value = val.substring(0, selection.start) + emo + val.substring(selection.end, selection.len);
 
-      // @todo - [needim] - check browser compatibilities
-      el.selectionStart = el.selectionEnd = selection.start + emo.length;
-      el.focus();
+        // @todo - [needim] - check browser compatibilities
+        el.selectionStart = el.selectionEnd = selection.start + emo.length;
+        el.focus();
+      }
     }
   };
 

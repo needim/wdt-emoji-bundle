@@ -127,6 +127,10 @@
                     <label>div:contenteditable 2 - output</label>
                     <div id="contenteditable2-output"></div>
                 </div>
+                <div class="form-group">
+                    <label>Open on colon</label>
+                    <input id="open-on-colon" type="text" value="Start typing and type a :" class="form-control wdt-emoji-bundle-enabled wdt-emoji-open-on-colon">
+                </div>
                 <hr>
                 <div class="form-group text-center">
                     <div>
@@ -214,7 +218,8 @@
         'emojione': '../sheets/sheet_emojione_64.png'
       };
 
-      wdtEmojiBundle.init('.wdt-emoji-bundle-enabled');
+      wdtEmojiBundle.defaults.openOnColon = '.wdt-emoji-open-on-colon'
+      window.wdtEmojiInstance = wdtEmojiBundle.init('.wdt-emoji-bundle-enabled');
 
       wdtEmojiBundle.on('afterSelect', function (a, b) {
         console.log('afterSelect', a, b);
