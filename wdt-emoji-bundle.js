@@ -143,18 +143,17 @@
     var element = ev.target,
         val = element.value,
         matches = val.match(/[^:]*$/g), //select everything after last : character
-        text = matches[0],
-        self = this;
+        text = matches[0];
 
-    if (self.searchInput) {
-      self.searchInput.value = text;
+    if (wdtEmojiBundle.searchInput) {
+      wdtEmojiBundle.searchInput.value = text;
       wdtEmojiBundle.search(text);
     }
   }
 
 
   /**
-   * Fires when a user enters the `:` key
+   * Fires when a user enters the `:` key on the input
    * @param ev
    * @returns {boolean}
    */
@@ -163,9 +162,16 @@
         parent = findParent(element, 'wdt-emoji-picker-parent'),
         emojiPicker = findChild(parent, 'wdt-emoji-picker');
 
-    if (!hasClass(emojiPicker, 'wdt-emoji-picker-open')) {
-      element.addEventListener('keyup', wdtEmojiBundle.searchAfterColon.bind(this))
-      wdtEmojiBundle.openPicker.call(emojiPicker, {target: emojiPicker})
+    // picker is open -> close
+    if (hasClass(emojiPicker, 'wdt-emoji-picker-open')) {
+      element.removeEventListener('keyup', wdtEmojiBundle.searchAfterColon);
+      wdtEmojiBundle.close();
+      return false;
+    // picker is closed -> open
+    } else {
+      element.addEventListener('keyup', wdtEmojiBundle.searchAfterColon);
+      wdtEmojiBundle.openPicker.call(emojiPicker, {target: emojiPicker});
+      return true;
     }
   }
 
