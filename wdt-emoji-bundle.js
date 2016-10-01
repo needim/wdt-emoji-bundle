@@ -119,13 +119,18 @@
 
       p.addEventListener('click', wdtEmojiBundle.openPicker);
 
-      addClass(element.parentNode, 'wdt-emoji-picker-parent');
-      element.parentNode.appendChild(p);
+      var parent = element.parentNode;
+      addClass(parent, 'wdt-emoji-picker-parent');
+      parent.appendChild(p);
       if (hasClass(element, 'wdt-emoji-open-on-colon')) {
-        element.addEventListener('keyup', function (evt) {
+        parent.addEventListener('keyup', function (evt) {
           // colon key 186
           if (evt.keyCode === 186) {
             wdtEmojiBundle.onColonKey(evt)
+          }
+          // backspace key
+          if (evt.keyCode === 8) {
+            wdtEmojiBundle.onBackspaceKey(evt)
           }
         })
       }
@@ -158,22 +163,55 @@
    * @returns {boolean}
    */
   wdtEmojiBundle.onColonKey = function (ev) {
-    var element = ev.target,
-        parent = findParent(element, 'wdt-emoji-picker-parent'),
+    var input = ev.target,
+        parent = findParent(input, 'wdt-emoji-picker-parent');
         emojiPicker = findChild(parent, 'wdt-emoji-picker');
 
     // picker is open -> close
     if (hasClass(emojiPicker, 'wdt-emoji-picker-open')) {
-      element.removeEventListener('keyup', wdtEmojiBundle.searchAfterColon);
+      parent.removeEventListener('keyup', wdtEmojiBundle.searchAfterColon);
       wdtEmojiBundle.close();
       return false;
     // picker is closed -> open
     } else {
-      element.addEventListener('keyup', wdtEmojiBundle.searchAfterColon);
+      parent.addEventListener('keyup', wdtEmojiBundle.searchAfterColon);
       wdtEmojiBundle.openPicker.call(emojiPicker, {target: emojiPicker});
       return true;
     }
   }
+
+
+  /**
+   * Fires when a user hits the backspace key on the input
+   * @param ev
+   * @returns {boolean}
+   */
+  wdtEmojiBundle.onBackspaceKey = function (ev) {
+    var input = ev.target,
+        parent = findParent(input, 'wdt-emoji-picker-parent');
+        emojiPicker = findChild(parent, 'wdt-emoji-picker');
+
+    // picker is open -> close if necessary
+    if (hasClass(emojiPicker, 'wdt-emoji-picker-open')) {
+      var val = input.value,
+          matches = val.match(/[^:]*$/g), //select everything after last : character
+          text = matches[0];
+      // there is no text to search for
+      // there is a space between last colon and where we are now
+      if (!val || !val.length || text.match(/\s/)) {
+        if (wdtEmojiBundle.searchInput) {
+          // clear out the search
+          // remove the keyup listener for search
+          // close the widget
+          wdtEmojiBundle.searchInput.value = "";
+          wdtEmojiBundle.search("");
+          parent.removeEventListener('keyup', wdtEmojiBundle.searchAfterColon);
+          wdtEmojiBundle.close();
+        }
+      }
+    }
+  }
+
 
   /**
    *
@@ -372,6 +410,12 @@
   wdtEmojiBundle.closePicker = function (element) {
     removeClass(element, 'wdt-emoji-picker-open');
     element.innerHTML = emoji.replace_colons(':smile:');
+    var parent = findParent(element, 'wdt-emoji-picker-parent');
+    // remove
+    // if (wdtEmojiBundle.searchInput) {
+    //   wdtEmojiBundle.searchInput.value = "";
+    //   wdtEmojiBundle.search("");
+    //   parent.removeEventListener('keyup', wdtEmojiBundle.searchAfterColon);
   };
 
   /**
