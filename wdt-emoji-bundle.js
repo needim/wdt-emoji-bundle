@@ -169,7 +169,6 @@
 
     // picker is open -> close
     if (hasClass(emojiPicker, 'wdt-emoji-picker-open')) {
-      parent.removeEventListener('keyup', wdtEmojiBundle.searchAfterColon);
       wdtEmojiBundle.close();
       return false;
     // picker is closed -> open
@@ -199,15 +198,7 @@
       // there is no text to search for
       // there is a space between last colon and where we are now
       if (!val || !val.length || text.match(/\s/)) {
-        if (wdtEmojiBundle.searchInput) {
-          // clear out the search
-          // remove the keyup listener for search
-          // close the widget
-          wdtEmojiBundle.searchInput.value = "";
-          wdtEmojiBundle.search("");
-          parent.removeEventListener('keyup', wdtEmojiBundle.searchAfterColon);
-          wdtEmojiBundle.close();
-        }
+        wdtEmojiBundle.close();
       }
     }
   }
@@ -411,11 +402,12 @@
     removeClass(element, 'wdt-emoji-picker-open');
     element.innerHTML = emoji.replace_colons(':smile:');
     var parent = findParent(element, 'wdt-emoji-picker-parent');
-    // remove
-    // if (wdtEmojiBundle.searchInput) {
-    //   wdtEmojiBundle.searchInput.value = "";
-    //   wdtEmojiBundle.search("");
-    //   parent.removeEventListener('keyup', wdtEmojiBundle.searchAfterColon);
+    // clear search and remove searchAfterColon listener
+    if (wdtEmojiBundle.searchInput) {
+      wdtEmojiBundle.searchInput.value = "";
+      wdtEmojiBundle.search("");
+    }
+    parent.removeEventListener('keyup', wdtEmojiBundle.searchAfterColon);
   };
 
   /**
