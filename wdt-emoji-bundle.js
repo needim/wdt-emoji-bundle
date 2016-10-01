@@ -160,13 +160,12 @@
    */
   wdtEmojiBundle.onColonKey = function (ev) {
     var element = ev.target,
-        parent = findParent(element, 'wdt-emoji-picker-parent');
-    console.log('debug onColonKey', hasClass(this.popup, 'wdt-emoji-picker-open'))
-    debugger
-    if (!hasClass(this.popup, 'wdt-emoji-picker-open')) {
-      console.log('debug onColonKey attachSearch')
+        parent = findParent(element, 'wdt-emoji-picker-parent'),
+        emojiPicker = findChild(parent, 'wdt-emoji-picker');
+
+    if (!hasClass(emojiPicker, 'wdt-emoji-picker-open')) {
       element.addEventListener('keyup', wdtEmojiBundle.searchAfterColon.bind(this))
-      wdtEmojiBundle.openPicker(ev)
+      wdtEmojiBundle.openPicker.call(emojiPicker, {target: emojiPicker})
     }
   }
 
@@ -365,7 +364,6 @@
    * @param element
    */
   wdtEmojiBundle.closePicker = function (element) {
-    console.log('debug closePicker')
     removeClass(element, 'wdt-emoji-picker-open');
     element.innerHTML = emoji.replace_colons(':smile:');
   };
@@ -697,6 +695,22 @@
   var findParent = function (el, cls) {
     while ((el = el.parentElement) && !el.classList.contains(cls));
     return el;
+  };
+
+  /**
+   *
+   * @param el
+   * @param cls
+   * @returns {*}
+   */
+  var findChild = function (el, cls) {
+    var children = el.children;
+    for (var i = 0; i < children.length; i++) {
+      var child = children[i];
+      if (child.classList.contains(cls)) {
+        return child;
+      }
+    }
   };
 
   /**
