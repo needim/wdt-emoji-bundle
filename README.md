@@ -87,6 +87,12 @@ wdtEmojiBundle.on('afterSelect', function (event) {
 })
 ```
 
+===
+
+Auto open the emoji picker when the user types the colon key `:` in the input:
+
+* Add class '.wdt-emoji-open-on-colon' to the input field that is going to have the emoji picker 
+
 # TODO:
 
 - Documentation :)
