@@ -172,7 +172,6 @@
       return false;
     // picker is closed -> open
     } else {
-      parent.addEventListener('keyup', wdtEmojiBundle.searchAfterColon);
       wdtEmojiBundle.openPicker.call(emojiPicker, {target: emojiPicker});
       return true;
     }
@@ -261,6 +260,7 @@
     wdtEmojiBundle.closePickers();
 
     addClass(this, 'wdt-emoji-picker-open');
+    parent.addEventListener('keyup', wdtEmojiBundle.searchAfterColon);
     this.innerHTML = emoji.replace_colons(':sunglasses:');
   };
 
