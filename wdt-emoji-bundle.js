@@ -807,7 +807,7 @@
     return result;
   };
 
-  /**
+    /**
    * Replace selection text for :input
    *
    * @param el
@@ -817,32 +817,19 @@
   var replaceText = function (el, selection, emo) {
     var val = el.value || el.innerHTML || '';
 
-    // no actual selection
-    // see if there is a colon followed by a search
-    // that needs replacing
-    if (selection.start === selection.end) {
-      if (selection.ce) { // if contenteditable
-        // TODO
-        el.focus();
-        document.execCommand('insertText', false, emo);
-      } else {
-        el.value = val.replace(/(:\w*:?)(?!.*:)/, emo)
-        el.focus();
-      }
-    // there is a selection - replace it all with the emoji
+    if (selection.ce) { // if contenteditable
+      el.focus();
+      document.execCommand('insertText', false, emo);
     } else {
-      if (selection.ce) { // if contenteditable
-        el.focus();
-        document.execCommand('insertText', false, emo);
-      } else {
-        el.value = val.substring(0, selection.start) + emo + val.substring(selection.end, selection.len);
+      var textBefore = val.substring(0, selection.start);
+      textBefore = textBefore.replace(/:\S*$/, '')
+      el.value = textBefore + emo + val.substring(selection.end, selection.len);
 
-        // @todo - [needim] - check browser compatibilities
-        el.selectionStart = el.selectionEnd = selection.start + emo.length;
-        el.focus();
-      }
+      // @todo - [needim] - check browser compatibilities
+      el.selectionStart = el.selectionEnd = selection.start + emo.length;
+      el.focus();
     }
-  };
+  }; 
 
   /**
    * Fire custom events
