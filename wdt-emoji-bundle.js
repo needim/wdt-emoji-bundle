@@ -144,7 +144,6 @@
    * @returns {void}
    */
   wdtEmojiBundle.searchAfterColon = function (ev) {
-    console.log('debug searchAfterColon')
     var element = ev.target,
         val = element.value,
         matches = val.match(/[^:]*$/g), //select everything after last : character
