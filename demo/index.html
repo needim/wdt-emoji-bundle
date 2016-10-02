@@ -218,6 +218,8 @@
         'emojione': '../sheets/sheet_emojione_64.png'
       };
 
+      wdtEmojiBundle.init('.wdt-emoji-bundle-enabled');
+
       wdtEmojiBundle.on('afterSelect', function (a, b) {
         console.log('afterSelect', a, b);
       });
