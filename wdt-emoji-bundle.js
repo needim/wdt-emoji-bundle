@@ -161,17 +161,12 @@
       wdtEmojiBundle.close();
       return;
     }
-
-    // is open
-    if (hasClass(emojiPicker, 'wdt-emoji-picker-open')) {
-      // execute the search
-      wdtEmojiBundle.fillSearch(text);
     // is closed
-    } else {
+    if (!hasClass(emojiPicker, 'wdt-emoji-picker-open')) {
       wdtEmojiBundle.openPicker.call(emojiPicker, {target: emojiPicker});
-      // execute the search
-      wdtEmojiBundle.fillSearch(text);
     }
+    // execute the search
+    wdtEmojiBundle.fillSearch(text);
   }
 
   /**
