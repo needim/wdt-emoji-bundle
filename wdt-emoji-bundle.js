@@ -794,6 +794,7 @@
    */
   var replaceText = function (el, selection, emo) {
     var val = el.value || el.innerHTML || '';
+    emo = emo + ' '; //append a space
 
     if (selection.ce) { // if contenteditable
       el.focus();
