@@ -145,13 +145,29 @@
    */
   wdtEmojiBundle.searchAfterColon = function (ev) {
     var element = ev.target,
+        parent = findParent(element, 'wdt-emoji-picker-parent'),
+        emojiPicker = findChild(parent, 'wdt-emoji-picker'),
         val = element.value,
-        matches = val.match(/[^:]*$/g), //select everything after last : character
-        text = matches[0];
+        selection = getSelection(element),
+        textBeforeCursor = val.substring(0, selection.start),
+        // `<space>:` followed by text OR
+        // beginnig of string followed by text
+        // text is captured
+        matches = textBeforeCursor.match(/(\s|^):(\S*)$/),
+        text = matches && matches[2];
 
-    if (wdtEmojiBundle.searchInput) {
-      wdtEmojiBundle.searchInput.value = text;
-      wdtEmojiBundle.search(text);
+    // is open
+    if (hasClass(emojiPicker, 'wdt-emoji-picker-open')) {
+      // execute the search
+      wdtEmojiBundle.fillSearch(text);
+    // is closed
+    } else {
+      //  open if we have a > 1 character emoji search
+      if (text && text.length > 1) {
+        wdtEmojiBundle.openPicker.call(emojiPicker, {target: emojiPicker});
+        // execute the search
+        wdtEmojiBundle.fillSearch(text);
+      }
     }
   }
 
@@ -170,9 +186,9 @@
     if (hasClass(emojiPicker, 'wdt-emoji-picker-open')) {
       wdtEmojiBundle.close();
       return false;
-    // picker is closed -> open
+    // picker is closed listen then open/search
     } else {
-      wdtEmojiBundle.openPicker.call(emojiPicker, {target: emojiPicker});
+      parent.addEventListener('keyup', wdtEmojiBundle.searchAfterColon);
       return true;
     }
   }
@@ -260,7 +276,6 @@
     wdtEmojiBundle.closePickers();
 
     addClass(this, 'wdt-emoji-picker-open');
-    parent.addEventListener('keyup', wdtEmojiBundle.searchAfterColon);
     this.innerHTML = emoji.replace_colons(':sunglasses:');
   };
 
@@ -498,6 +513,21 @@
     });
 
   };
+
+  /**
+   *
+   * @param q
+   * @returns {boolean}
+   */
+  wdtEmojiBundle.fillSearch = function (q) {
+    if (wdtEmojiBundle.searchInput) {
+      wdtEmojiBundle.searchInput.value = q;
+      return wdtEmojiBundle.search(q);
+    } else {
+      return false;
+    }
+  }
+
 
   /**
    *
@@ -825,7 +855,7 @@
       el.value = textBefore + emo + val.substring(selection.end, selection.len);
 
       // @todo - [needim] - check browser compatibilities
-      el.selectionStart = el.selectionEnd = selection.start + emo.length;
+      el.selectionStart = el.selectionEnd = (textBefore.length + emo.length);
       el.focus();
     }
   }; 
