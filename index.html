@@ -15,7 +15,9 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
+    <link rel="stylesheet" href="prettify.css"/>
     <link rel="stylesheet" href="wdt-emoji-bundle.css"/>
+    <script type="text/javascript" src="prettify.js"></script>
     <script type="text/javascript" src="emoji.min.js"></script>
     <script type="text/javascript" src="wdt-emoji-bundle.min.js"></script>
 
@@ -23,78 +25,81 @@
 
     <style type="text/css">
         body {
-          font-family: 'Open Sans', sans-serif;
-          overflow-y: scroll;
+            font-family: 'Open Sans', sans-serif;
+            overflow-y: scroll;
         }
 
         #fullname-output,
         #comment-output,
         #contenteditable-output,
         #contenteditable2-output {
-          min-height: 43px;
-          padding: 10px;
-          background-color: rgba(255, 255, 0, 0.14);
+            min-height: 43px;
+            padding: 10px;
+            background-color: rgba(255, 255, 0, 0.14);
         }
 
         #head-title .emoji-outer {
-          width: 64px;
-          height: 64px;
+            width: 64px;
+            height: 64px;
         }
 
         .form-control {
-          padding-right: 27px;
+            padding-right: 27px;
         }
 
         div.form-control {
-          height: auto;
+            height: auto;
         }
 
         .todo-list li {
-          line-height: 26px;
+            line-height: 26px;
         }
 
         .bottom-text .emoji-sizer {
-          width: 14px;
-          height: 14px;
+            width: 14px;
+            height: 14px;
         }
 
         .mobile-notice {
-          background: #ffff00;
-          padding: 10px;
-          border-radius: 20px
+            background: #ffff00;
+            padding: 10px;
+            border-radius: 20px
         }
 
         .set-changers {
-          margin: 20px 0;
+            margin: 20px 0;
         }
+
         var {
-          color: #207CE0;
-          font-style: normal;
+            color: #207CE0;
+            font-style: normal;
         }
 
         span.info {
-          display: block;
-          margin-top: 25px;
+            display: block;
+            margin-top: 25px;
         }
 
         code.block {
-          display: block;
-          padding: 7px 10px;
-          margin: 4px 0;
+            display: block;
+            padding: 7px 10px;
+            margin: 4px 0;
         }
+
         h4 {
-          line-height: 25px;
-          font-weight: bold;
+            line-height: 25px;
+            font-weight: bold;
         }
 
         .sharer-btn {
-          display: inline-block !important;
-          position: relative;
-          top: 2px;
+            display: inline-block !important;
+            position: relative;
+            top: 2px;
         }
+
         .sharer-btn label {
-          padding: 6px 10px !important;
-          background: #EEEEEE !important;
+            padding: 6px 10px !important;
+            background: #EEEEEE !important;
         }
     </style>
 
@@ -104,7 +109,7 @@
 
 <div class="container" id="app">
     <div class="row">
-        <div class="col-md-6 col-md-push-3 col-xs-12" style="padding-top: 10px">
+        <div class="col-md-8 col-md-push-2 col-xs-12" style="padding-top: 10px">
 
             <h2 id="head-title" class="header text-center">wdt-emoji-bundle <br><br> :lollipop:</h2>
 
@@ -196,13 +201,69 @@
                   <p>Download bundle from <a href="http://github.com/needim/wdt-emoji-bundle/releases">Github</a> and upload the files to your server.</p>
 
                   <p>
-                    <span class="info">via NPM</span>
+                    <span class="info">Or via NPM</span>
                     <code class="block"><strong>npm</strong> i <var>wdt-emoji-bundle</var></code>
                   </p>
 
                   <p>
-                    <span class="info">via BOWER</span>
+                    <span class="info">Or via BOWER</span>
                     <code class="block"><strong>bower</strong> i <var>wdt-emoji-bundle</var></code>
+                  </p>
+
+
+                    <p>
+                    <span class="info">Add this markup to DOM</span>
+                    </p>
+                        <pre class="prettyprint lang-javascript">
+&lt;div class="wdt-emoji-popup"&gt;
+  &lt;a href="#" class="wdt-emoji-popup-mobile-closer"&gt; &times; &lt;/a&gt;
+  &lt;div class="wdt-emoji-menu-content"&gt;
+    &lt;div id="wdt-emoji-menu-header"&gt;
+      &lt;a class="wdt-emoji-tab active" data-group-name="Recent"&gt;&lt;/a&gt;
+      &lt;a class="wdt-emoji-tab" data-group-name="People"&gt;&lt;/a&gt;
+      &lt;a class="wdt-emoji-tab" data-group-name="Nature"&gt;&lt;/a&gt;
+      &lt;a class="wdt-emoji-tab" data-group-name="Foods"&gt;&lt;/a&gt;
+      &lt;a class="wdt-emoji-tab" data-group-name="Activity"&gt;&lt;/a&gt;
+      &lt;a class="wdt-emoji-tab" data-group-name="Places"&gt;&lt;/a&gt;
+      &lt;a class="wdt-emoji-tab" data-group-name="Objects"&gt;&lt;/a&gt;
+      &lt;a class="wdt-emoji-tab" data-group-name="Symbols"&gt;&lt;/a&gt;
+      &lt;a class="wdt-emoji-tab" data-group-name="Flags"&gt;&lt;/a&gt;
+      &lt;a class="wdt-emoji-tab" data-group-name="Custom"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="wdt-emoji-scroll-wrapper"&gt;
+      &lt;div id="wdt-emoji-menu-items"&gt;
+        &lt;input id="wdt-emoji-search" type="text" placeholder="Search"&gt;
+        &lt;h3 id="wdt-emoji-search-result-title"&gt;Search Results&lt;/h3&gt;
+        &lt;div class="wdt-emoji-sections"&gt;&lt;/div&gt;
+        &lt;div id="wdt-emoji-no-result"&gt;No emoji found&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="wdt-emoji-footer"&gt;
+      &lt;div id="wdt-emoji-preview"&gt;
+        &lt;span id="wdt-emoji-preview-img"&gt;&lt;/span&gt;
+        &lt;div id="wdt-emoji-preview-text"&gt;
+          &lt;span id="wdt-emoji-preview-name"&gt;&lt;/span&gt;&lt;br&gt;
+          &lt;span id="wdt-emoji-preview-aliases"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div id="wdt-emoji-preview-bundle"&gt;
+        &lt;span&gt;WDT Emoji Bundle&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+                  <p>
+                    <span class="info">Include <strong>emoji.min.js</strong></span>
+                    <pre class="prettyprint lang-html">
+&lt;script type="text/javascript" src="emoji.min.js">&lt;/script&gt;
+                    </pre>
+                  </p>
+                  <p>
+                    <span class="info">Include <strong>wdt-emoji-bundle.min.js</strong></span>
+                    <pre class="prettyprint lang-html">
+&lt;script type="text/javascript" src="wdt-emoji-bundle.min.js">&lt;/script&gt;
+                    </pre>
                   </p>
 
                   <hr>
@@ -261,7 +322,7 @@
                     <code class="block">var output = <strong>wdtEmojiBundle</strong>.render('<var>Lorem ipsum :) 🙊</var>');</code>
 
                     <span class="info">output will be &downarrow; Change to &rightarrow;
-                      <a class="change-emoji-type" data-emoji-type="apple" href="#apple">Apple</a>,
+                        <a class="change-emoji-type" data-emoji-type="apple" href="#apple">Apple</a>,
                       <a class="change-emoji-type" data-emoji-type="google" href="#google">Google</a>,
                       <a class="change-emoji-type" data-emoji-type="twitter" href="#twitter">Twitter</a>,
                       <a class="change-emoji-type" data-emoji-type="emojione" href="#emojione">Emojione</a>
@@ -343,79 +404,79 @@
 </div>
 
 <script type="text/javascript">
-    (function() {
+    (function () {
+        window.prettyPrint && prettyPrint();
+        wdtEmojiBundle.defaults.emojiSheets = {
+            'apple'   : './sheets/sheet_apple_64_indexed_128.png',
+            'google'  : './sheets/sheet_google_64_indexed_128.png',
+            'twitter' : './sheets/sheet_twitter_64_indexed_128.png',
+            'emojione': './sheets/sheet_emojione_64_indexed_128.png'
+        };
 
-      wdtEmojiBundle.defaults.emojiSheets = {
-        'apple'   : './sheets/sheet_apple_64.png',
-        'google'  : './sheets/sheet_google_64.png',
-        'twitter' : './sheets/sheet_twitter_64.png',
-        'emojione': './sheets/sheet_emojione_64.png'
-      };
+        wdtEmojiBundle.init('.wdt-emoji-bundle-enabled');
 
-      wdtEmojiBundle.init('.wdt-emoji-bundle-enabled');
-
-      var typeChangers = document.querySelectorAll('.change-emoji-type');
-      for (var i = 0; i < typeChangers.length; i++) {
-        typeChangers[i].addEventListener('click', function () {
-          wdtEmojiBundle.changeType(this.dataset.emojiType);
-          return false;
-        });
-      }
-      var ev = new Event('input');
-
-      // ------------------------------------------------------
-      document.getElementById('fullname').addEventListener('input', function () {
-        document.getElementById('fullname-output').innerHTML = wdtEmojiBundle.render(this.value);
-      });
-      document.getElementById('fullname').dispatchEvent(ev);
-      // ------------------------------------------------------
-
-      // ------------------------------------------------------
-      document.getElementById('comment').addEventListener('input', function () {
-        document.getElementById('comment-output').innerHTML = wdtEmojiBundle.render(this.value);
-      });
-      document.getElementById('comment').dispatchEvent(ev);
-      // ------------------------------------------------------
-
-      document.getElementById('contenteditable').addEventListener('input', function () {
-        document.getElementById('contenteditable-output').innerHTML = wdtEmojiBundle.render(this.innerHTML);
-      });
-      document.getElementById('contenteditable').dispatchEvent(ev);
-
-      // ------------------------------------------------------
-      document.getElementById('contenteditable2').addEventListener('input', function () {
-        document.getElementById('contenteditable2-output').innerHTML = wdtEmojiBundle.render(this.innerHTML);
-      });
-      document.getElementById('contenteditable2').dispatchEvent(ev);
-      // ------------------------------------------------------
-
-      document.getElementById('head-title').innerHTML = wdtEmojiBundle.render(document.getElementById('head-title').innerHTML);
-      document.querySelector('.todo-list').innerHTML = wdtEmojiBundle.render(document.querySelector('.todo-list').innerHTML);
-      document.querySelector('.bottom-text').innerHTML = wdtEmojiBundle.render(document.querySelector('.bottom-text').innerHTML);
-      document.querySelector('#doc-render-output').innerHTML = wdtEmojiBundle.render(':) 🙊');
-
-
-      new Share(".sharer-btn", {
-        title: 'wdt-emoji-bundle - Slack like emoji picker.',
-        description: 'Slack like emoji picker with apple, twitter, google, emojione support.',
-        image: 'https://cdn.rawgit.com/needim/wdt-emoji-bundle/master/wdt-emoji-bundle.gif',
-        networks: {
-          pinterest: {
-            enabled: false
-          },
-          facebook: {
-            load_sdk: true,
-            app_id: '198259823578303',
-            title: 'wdt-emoji-bundle - Slack like emoji picker.',
-            caption: 'wdt-emoji-bundle - Slack like emoji picker.',
-            description: 'Slack like emoji picker with apple, twitter, google, emojione support.',
-            image: 'https://cdn.rawgit.com/needim/wdt-emoji-bundle/master/wdt-emoji-bundle.gif'
-          },
-          twitter: {
-            description: encodeURIComponent('Slack like #emoji picker #plugin with #apple, #twitter, #google, #emojione support. via @needim')
-          }
+        var typeChangers = document.querySelectorAll('.change-emoji-type');
+        for (var i = 0; i < typeChangers.length; i++) {
+            typeChangers[i].addEventListener('click', function () {
+                wdtEmojiBundle.changeType(this.dataset.emojiType);
+                return false;
+            });
         }
-      });
+        var ev = new Event('input');
+
+        // ------------------------------------------------------
+        document.getElementById('fullname').addEventListener('input', function () {
+            document.getElementById('fullname-output').innerHTML = wdtEmojiBundle.render(this.value);
+        });
+        document.getElementById('fullname').dispatchEvent(ev);
+        // ------------------------------------------------------
+
+        // ------------------------------------------------------
+        document.getElementById('comment').addEventListener('input', function () {
+            document.getElementById('comment-output').innerHTML = wdtEmojiBundle.render(this.value);
+        });
+        document.getElementById('comment').dispatchEvent(ev);
+        // ------------------------------------------------------
+
+        document.getElementById('contenteditable').addEventListener('input', function () {
+            document.getElementById('contenteditable-output').innerHTML = wdtEmojiBundle.render(this.innerHTML);
+        });
+        document.getElementById('contenteditable').dispatchEvent(ev);
+
+        // ------------------------------------------------------
+        document.getElementById('contenteditable2').addEventListener('input', function () {
+            document.getElementById('contenteditable2-output').innerHTML = wdtEmojiBundle.render(this.innerHTML);
+        });
+        document.getElementById('contenteditable2').dispatchEvent(ev);
+        // ------------------------------------------------------
+
+        document.getElementById('head-title').innerHTML        = wdtEmojiBundle.render(document.getElementById('head-title').innerHTML);
+        document.querySelector('.todo-list').innerHTML         = wdtEmojiBundle.render(document.querySelector('.todo-list').innerHTML);
+        document.querySelector('.bottom-text').innerHTML       = wdtEmojiBundle.render(document.querySelector('.bottom-text').innerHTML);
+        document.querySelector('#doc-render-output').innerHTML = wdtEmojiBundle.render(':) 🙊');
+
+
+        new Share(".sharer-btn", {
+            title      : 'wdt-emoji-bundle - Slack like emoji picker.',
+            description: 'Slack like emoji picker with apple, twitter, google, emojione support.',
+            image      : 'https://cdn.rawgit.com/needim/wdt-emoji-bundle/master/wdt-emoji-bundle.gif',
+            networks   : {
+                pinterest: {
+                    enabled: false
+                },
+                facebook : {
+                    load_sdk   : true,
+                    app_id     : '198259823578303',
+                    title      : 'wdt-emoji-bundle - Slack like emoji picker.',
+                    caption    : 'wdt-emoji-bundle - Slack like emoji picker.',
+                    description: 'Slack like emoji picker with apple, twitter, google, emojione support.',
+                    image      : 'https://cdn.rawgit.com/needim/wdt-emoji-bundle/master/wdt-emoji-bundle.gif'
+                },
+                twitter  : {
+                    description: encodeURIComponent('Slack like #emoji picker #plugin with #apple, #twitter, #google, #emojione support. via @needim')
+                }
+            }
+        });
 
 
     })();
@@ -425,12 +486,12 @@
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
             a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
+                m = s.getElementsByTagName(o)[0];
             a.async = 1;
-            a.src = g;
+            a.src   = g;
             m.parentNode.insertBefore(a, m)
         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
         ga('create', 'UA-46744044-1', 'auto');
