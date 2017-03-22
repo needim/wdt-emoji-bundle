@@ -173,6 +173,11 @@
 
     css(wdtEmojiBundle.popup, findBestAvailablePosition(ev.target));
 
+    // On window resized
+    window.addEventListener('resize', function(new_event){
+      css(wdtEmojiBundle.popup, findBestAvailablePosition(ev.target));
+    });
+
     addClass(wdtEmojiBundle.popup, 'open');
 
     // fill with emoji
