@@ -9,13 +9,13 @@
 ;
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(factory);
+    define(['js-emoji'], factory);
   } else if (typeof exports === 'object') {
-    module.exports = factory();
+    module.exports = factory(require('js-emoji'));
   } else {
-    root.wdtEmojiBundle = factory();
+    root.wdtEmojiBundle = factory(root.EmojiConvertor);
   }
-})(this, function () {
+})(this, function (EmojiConvertor) {
   var wdtEmojiBundle = {};
 
   wdtEmojiBundle.defaults = {
