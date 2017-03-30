@@ -122,11 +122,55 @@
 
       p.addEventListener('click', wdtEmojiBundle.openPicker);
 
-      addClass(element.parentNode, 'wdt-emoji-picker-parent');
-      element.parentNode.appendChild(p);
+      var parent = element.parentNode;
+      addClass(parent, 'wdt-emoji-picker-parent');
+      parent.appendChild(p);
+      if (hasClass(element, 'wdt-emoji-open-on-colon')) {
+        parent.addEventListener('keyup', wdtEmojiBundle.onKeyup)
+      }
       addClass(element, 'wdt-emoji-picker-ready');
     }
   };
+
+  /**
+    *
+    * @param ev
+    * @returns {void}
+  */
+
+  wdtEmojiBundle.onKeyup = function (ev) {
+    var element = ev.target,
+        parent = findParent(element, 'wdt-emoji-picker-parent'),
+        emojiPicker = findChild(parent, 'wdt-emoji-picker'),
+        val = element.value,
+        selection = getSelection(element),
+        textBeforeCursor = val.substring(0, selection.start),
+        // `<space>:` OR `^:` followed by text
+        // text is captured
+        matches = textBeforeCursor.match(/(\s|^):(\S*)$/),
+        text = matches && matches[2];
+
+    wdtEmojiBundle.searchAfterColon(text, emojiPicker);
+  }
+
+  /**
+   *
+   * @param ev
+   * @returns {void}
+   */
+  wdtEmojiBundle.searchAfterColon = function (text, emojiPicker) {
+    // no text  or not enough text after colon
+    if (!text || text.length < 2) {
+      wdtEmojiBundle.close();
+      return;
+    }
+    // is closed
+    if (!hasClass(emojiPicker, 'wdt-emoji-picker-open')) {
+      wdtEmojiBundle.openPicker.call(emojiPicker, {target: emojiPicker});
+    }
+    // execute the search
+    wdtEmojiBundle.fillSearch(text);
+  }
 
   /**
    *
@@ -328,6 +372,11 @@
   wdtEmojiBundle.closePicker = function (element) {
     removeClass(element, 'wdt-emoji-picker-open');
     element.innerHTML = this.emoji.replace_colons(':smile:');
+    var parent = findParent(element, 'wdt-emoji-picker-parent');
+    if (wdtEmojiBundle.searchInput) {
+      wdtEmojiBundle.searchInput.value = "";
+      wdtEmojiBundle.search("");
+    }
   };
 
   /**
@@ -351,6 +400,7 @@
       var ce = new Event('input');
       wdtEmojiBundle.input.dispatchEvent(ce);
       wdtEmojiBundle.close();
+      fire('afterSelect', {el: wdtEmojiBundle.input, event: event, emoji: ':' + this.dataset.wdtEmojiShortname + ':'});
 
       return false;
     });
@@ -424,6 +474,21 @@
    * @param q
    * @returns {boolean}
    */
+  wdtEmojiBundle.fillSearch = function (q) {
+    if (wdtEmojiBundle.searchInput) {
+      wdtEmojiBundle.searchInput.value = q;
+      return wdtEmojiBundle.search(q);
+    } else {
+      return false;
+    }
+  }
+
+
+  /**
+   *
+   * @param q
+   * @returns {boolean}
+   */
   wdtEmojiBundle.search = function (q) {
 
     var sections = wdtEmojiBundle.popup.querySelector('.wdt-emoji-sections'),
@@ -474,7 +539,7 @@
   wdtEmojiBundle.dispatchHandlers = {
     'select'         : [],
     'afterSelect'    : [],
-    'afterPickerOpen': []
+    'afterPickerOpen': [] // not implemented
   };
 
   /**
@@ -661,6 +726,22 @@
   /**
    *
    * @param el
+   * @param cls
+   * @returns {*}
+   */
+  var findChild = function (el, cls) {
+    var children = el.children;
+    for (var i = 0; i < children.length; i++) {
+      var child = children[i];
+      if (child.classList.contains(cls)) {
+        return child;
+      }
+    }
+  };
+
+  /**
+   *
+   * @param el
    * @returns {*}
    */
   var getSelection = function (el) {
@@ -710,7 +791,7 @@
     return result;
   };
 
-  /**
+    /**
    * Replace selection text for :input
    *
    * @param el
@@ -719,18 +800,21 @@
    */
   var replaceText = function (el, selection, emo) {
     var val = el.value || el.innerHTML || '';
+    emo = emo + ' '; //append a space
 
     if (selection.ce) { // if contenteditable
       el.focus();
       document.execCommand('insertText', false, emo);
     } else {
-      el.value = val.substring(0, selection.start) + emo + val.substring(selection.end, selection.len);
+      var textBefore = val.substring(0, selection.start);
+      textBefore = textBefore.replace(/:\S*$/, '')
+      el.value = textBefore + emo + val.substring(selection.end, selection.len);
 
       // @todo - [needim] - check browser compatibilities
-      el.selectionStart = el.selectionEnd = selection.start + emo.length;
+      el.selectionStart = el.selectionEnd = (textBefore.length + emo.length);
       el.focus();
     }
-  };
+  }; 
 
   /**
    * Fire custom events
