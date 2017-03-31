@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"/>
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&amp;subset=latin-ext" rel="stylesheet">
 
     <link rel="stylesheet" href="prettify.css"/>
     <link rel="stylesheet" href="wdt-emoji-bundle.css"/>
@@ -27,6 +27,15 @@
         body {
             font-family: 'Open Sans', sans-serif;
             overflow-y: scroll;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .label-block {
+            display: block;
+            text-align: center;
         }
 
         #fullname-output,
@@ -88,7 +97,6 @@
 
         h4 {
             line-height: 25px;
-            font-weight: bold;
         }
 
         .sharer-btn {
@@ -113,7 +121,7 @@
 
             <h2 id="head-title" class="header text-center">wdt-emoji-bundle <br><br> :lollipop:</h2>
 
-            <h4 class="text-center">Slack like emoji picker with <br> <strong>apple</strong>, <strong>twitter</strong>, <strong>google</strong>, <strong>emojione</strong> support.</h4>
+            <h4 class="text-center">Slack like emoji picker with <br> <strong>apple</strong>, <strong>twitter</strong>, <strong>google</strong>, <strong>emojione</strong>, <strong>facebook</strong>, <strong>messenger</strong> <br> support.</h4>
 
             <p class="text-center">
               <a class="btn btn-warning" href="#docs">Documentation</a>
@@ -131,23 +139,25 @@
                   <a class="btn btn-default change-emoji-type" data-emoji-type="google" href="#google">Google</a>
                   <a class="btn btn-default change-emoji-type" data-emoji-type="twitter" href="#twitter">Twitter</a>
                   <a class="btn btn-default change-emoji-type" data-emoji-type="emojione" href="#emojione">Emojione</a>
+                  <a class="btn btn-default change-emoji-type" data-emoji-type="facebook" href="#facebook">Facebook</a>
+                  <a class="btn btn-default change-emoji-type" data-emoji-type="messenger" href="#messenger">Messenger</a>
               </div>
             </div>
 
             <div class="project-links text-center">
-                <iframe src="http://ned.im/github-buttons/ghbtn.html?user=needim&amp;repo=wdt-emoji-bundle&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="35px"></iframe>
+                <iframe src="http://ned.im/github-buttons/ghbtn.html?user=needim&amp;repo=wdt-emoji-bundle&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="105px" height="35px"></iframe>
 
                 <iframe src="http://ned.im/github-buttons/ghbtn.html?user=needim&amp;repo=wdt-emoji-bundle&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="35px"></iframe>
 
-                <iframe src="http://ned.im/github-buttons/ghbtn.html?user=needim&amp;type=follow&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165px" height="35px"></iframe>
+                <iframe src="http://ned.im/github-buttons/ghbtn.html?user=needim&amp;type=follow&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="185px" height="35px"></iframe>
 
-                <iframe src="http://ned.im/github-buttons/ghbtn.html?user=needim&amp;repo=wdt-emoji-bundle&amp;type=download&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="140px" height="35px"></iframe>
+                <iframe src="http://ned.im/github-buttons/ghbtn.html?user=needim&amp;repo=wdt-emoji-bundle&amp;type=download&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="160px" height="35px"></iframe>
             </div>
             <hr>
             <form>
                 <div class="form-group">
-                    <label>input[type=text]</label>
-                    <input id="fullname" type="text" value=";) Hey! check :robot_face: this. :dark_sunglasses: :sunny:  :nerd_face: :dog:  :cat:  :hamster:  :lion_face:" class="form-control wdt-emoji-bundle-enabled">
+                    <label>input::text</label>
+                    <input id="fullname" type="text" value=";) Hey! check :heart_eyes:  this.  :dog:  :cat:  :hamster:" class="form-control wdt-emoji-bundle-enabled wdt-emoji-open-on-colon">
                 </div>
                 <div class="form-group">
                     <p class="text-center"><strong>&downarrow;</strong></p>
@@ -156,7 +166,7 @@
                 <hr>
                 <div class="form-group">
                     <label>textarea</label>
-                    <textarea id="comment" name="comment" class="form-control wdt-emoji-bundle-enabled" rows="3">;) Hey! check :robot_face: this. :dark_sunglasses: :sunny:  :nerd_face: :dog:  :cat:  :hamster:  :lion_face:</textarea>
+                    <textarea id="comment" name="comment" class="form-control wdt-emoji-bundle-enabled wdt-emoji-open-on-colon" rows="3">;) Hey! check :heart_eyes:  this.  :dog:  :cat:  :hamster:</textarea>
                 </div>
                 <div class="form-group">
                     <p class="text-center"><strong>&downarrow;</strong></p>
@@ -164,29 +174,18 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    <label>div:contenteditable</label>
-                    <div id="contenteditable" class="form-control wdt-emoji-bundle-enabled" contentEditable="true">;) <strong>Hey!</strong> check :robot_face: this. :dark_sunglasses: :sunny:  :nerd_face: :dog:  :cat:  :hamster:  :lion_face:</div>
+                    <label>div::contenteditable</label>
+                    <div id="contenteditable" class="form-control wdt-emoji-bundle-enabled" contentEditable="true">;) <strong>Hey!</strong> check :heart_eyes:  this.  :dog:  :cat:  :hamster:</div>
                 </div>
                 <div class="form-group">
                     <p class="text-center"><strong>&downarrow;</strong></p>
                     <div id="contenteditable-output"></div>
                 </div>
                 <hr>
+
                 <div class="form-group">
-                    <label>div:contenteditable 2</label>
-                    <div id="contenteditable2" class="form-control wdt-emoji-bundle-enabled" contentEditable="true">;) <strong>Hey!</strong> check :robot_face: this.</div>
-                </div>
-                <div class="form-group">
-                    <p class="text-center"><strong>&downarrow;</strong></p>
-                    <div id="contenteditable2-output"></div>
-                </div>
-                <hr>
-                <div class="form-group text-center">
-                    <div>
-                        Twitter emojiset: <a href="https://twemoji.maxcdn.com/">twemoji</a>
-                        <br>
-                        Emojione emojiset: <a href="https://github.com/Ranks/emojione">emojione</a>
-                    </div>
+                    <label>input::text w/ Open on colon</label>
+                    <input id="open-on-colon" type="text" value="Start typing and type sm after semicolon :" class="form-control wdt-emoji-bundle-enabled wdt-emoji-open-on-colon">
                 </div>
 
                 <hr>
@@ -258,15 +257,15 @@
                     <pre class="prettyprint lang-html">
 &lt;script type="text/javascript" src="emoji.min.js">&lt;/script&gt;
                     </pre>
-                  </p>
-                  <p>
+                    </p>
+                    <p>
                     <span class="info">Include <strong>wdt-emoji-bundle.min.js</strong></span>
                     <pre class="prettyprint lang-html">
 &lt;script type="text/javascript" src="wdt-emoji-bundle.min.js">&lt;/script&gt;
                     </pre>
-                  </p>
+                    </p>
 
-                  <hr>
+                    <hr>
 
                   <h4>Initializing the bundle</h4>
 
@@ -323,9 +322,11 @@
 
                     <span class="info">output will be &downarrow; Change to &rightarrow;
                         <a class="change-emoji-type" data-emoji-type="apple" href="#apple">Apple</a>,
-                      <a class="change-emoji-type" data-emoji-type="google" href="#google">Google</a>,
-                      <a class="change-emoji-type" data-emoji-type="twitter" href="#twitter">Twitter</a>,
-                      <a class="change-emoji-type" data-emoji-type="emojione" href="#emojione">Emojione</a>
+                        <a class="change-emoji-type" data-emoji-type="google" href="#google">Google</a>,
+                        <a class="change-emoji-type" data-emoji-type="twitter" href="#twitter">Twitter</a>,
+                        <a class="change-emoji-type" data-emoji-type="emojione" href="#emojione">Emojione</a>,
+                        <a class="change-emoji-type" data-emoji-type="facebook" href="#facebook">Facebook</a>,
+                        <a class="change-emoji-type" data-emoji-type="messenger" href="#emojione">Messenger</a>
                     </span>
                     <code class="block" id="doc-render-output"></code>
                   </p>
@@ -338,14 +339,14 @@
                     <div>
                         <ul class="todo-list">
                             <li>Better documentation. :neutral_face:</li>
-                            <li>Better popup positioning, repositioning (window.resize) :+1:</li>
+                            <li>Responsive Improvements. :wink:</li>
+                            <li>Better popup positioning :+1:</li>
+                            <li>Open on colon support for contenteditables :candy:</li>
                             <li>Frequently used emoji list with localstorage and/or API. :robot_face:</li>
                             <li>Provide more events; open, close, pickeropen, pickerclose etc. :tada: </li>
                             <li>Custom emoji support. :wine_glass:</li>
                             <li>Skin color support for apple/ios. :lion_face:</li>
-                            <li>Custom scrollbar. :bug:</li>
                             <li>Better contenteditable support, WYSIWYG? :nerd_face:</li>
-                            <li>Performance improvements. :stopwatch:</li>
                             <li>Check browser compatibilities. :joystick:</li>
                         </ul>
                     </div>
@@ -407,10 +408,12 @@
     (function () {
         window.prettyPrint && prettyPrint();
         wdtEmojiBundle.defaults.emojiSheets = {
-            'apple'   : './sheets/sheet_apple_64_indexed_128.png',
-            'google'  : './sheets/sheet_google_64_indexed_128.png',
-            'twitter' : './sheets/sheet_twitter_64_indexed_128.png',
-            'emojione': './sheets/sheet_emojione_64_indexed_128.png'
+            'apple'    : './sheets/sheet_apple_64_indexed_128.png',
+            'google'   : './sheets/sheet_google_64_indexed_128.png',
+            'twitter'  : './sheets/sheet_twitter_64_indexed_128.png',
+            'emojione' : './sheets/sheet_emojione_64_indexed_128.png',
+            'facebook' : '../sheets/sheet_facebook_64_indexed_128.png',
+            'messenger': '../sheets/sheet_messenger_64_indexed_128.png'
         };
 
         wdtEmojiBundle.init('.wdt-emoji-bundle-enabled');
@@ -422,7 +425,8 @@
                 return false;
             });
         }
-        var ev = new Event('input');
+        var ev = document.createEvent('Event');
+        ev.initEvent('input', true, true);
 
         // ------------------------------------------------------
         document.getElementById('fullname').addEventListener('input', function () {
@@ -442,13 +446,6 @@
             document.getElementById('contenteditable-output').innerHTML = wdtEmojiBundle.render(this.innerHTML);
         });
         document.getElementById('contenteditable').dispatchEvent(ev);
-
-        // ------------------------------------------------------
-        document.getElementById('contenteditable2').addEventListener('input', function () {
-            document.getElementById('contenteditable2-output').innerHTML = wdtEmojiBundle.render(this.innerHTML);
-        });
-        document.getElementById('contenteditable2').dispatchEvent(ev);
-        // ------------------------------------------------------
 
         document.getElementById('head-title').innerHTML        = wdtEmojiBundle.render(document.getElementById('head-title').innerHTML);
         document.querySelector('.todo-list').innerHTML         = wdtEmojiBundle.render(document.querySelector('.todo-list').innerHTML);
