@@ -1,6 +1,6 @@
 # wdt-emoji-bundle
 
-Slack like emoji selector with apple/ios, twitter/twemoji, google, emojione and custom emoji support. I :heart: opensource.
+Slack like emoji selector with apple/ios, twitter/twemoji, google, emojione, facebook, messenger and custom emoji support. I :heart: opensource.
 
 Thanks to Cal Henderson @iamcal.
 
@@ -30,6 +30,8 @@ wdtEmojiBundle.defaults.emojiSheets.apple = './sheet_apple.png';        // defau
 wdtEmojiBundle.defaults.emojiSheets.google = './sheet_google.png';      // default /sheets/sheet_google_64.png
 wdtEmojiBundle.defaults.emojiSheets.twitter = './sheet_twitter.png';    // default /sheets/sheet_twitter_64.png
 wdtEmojiBundle.defaults.emojiSheets.emojione = './sheet_emojione.png';  // default /sheets/sheet_emojione_64.png
+wdtEmojiBundle.defaults.emojiSheets.facebook = './sheet_facebook.png';  // default /sheets/sheet_facebook_64.png
+wdtEmojiBundle.defaults.emojiSheets.messenger = './sheet_messenger.png';  // default /sheets/sheet_messenger_64.png
 ```
 
 ===
@@ -95,16 +97,15 @@ Auto open the emoji picker when the user types the colon key `:` in the input:
 
 # TODO:
 
-- Documentation :)
+- Better documentation :)
 - Responsive Improvements.
-- Better popup positioning, repositioning (window.resize).
+- Better popup positioning.
+- Open on colon support for contenteditables.
 - Frequently used emoji list with localstorage and/or API.
 - Provide more events; open, close, pickeropen, pickerclose etc.
 - Custom emoji support.
 - Skin color support for apple icons.
-- Custom scrollbar.
 - Better contenteditable support, WYSIWYG?
-- Performance improvements.
 - Check browser compatibilities.
 
 ---

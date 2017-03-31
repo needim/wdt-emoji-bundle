@@ -1,6 +1,6 @@
 {
 	"name": "needim/wdt-emoji-bundle",
-	"description": "Slack like emoji selector with apple, twitter, google, emojione and custom emoji support.",
+	"description": "Slack like emoji selector with apple, twitter, google, emojione, facebook, messenger and custom emoji support.",
 	"type": "library",
 	"license": "MIT",
 	"homepage": "http://ned.im/wdt-emoji-bundle",
@@ -10,6 +10,8 @@
 		"apple",
 		"google",
 		"emojione",
+    "facebook",
+    "messenger",
 		"emoticon",
 		"slack",
 		"javascript",

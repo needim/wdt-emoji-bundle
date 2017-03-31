@@ -5,7 +5,7 @@
 	"authors": [
 		"Nedim Arabacı"
 	],
-	"description": "Slack like emoji selector with apple, twitter, google, emojione and custom emoji support.",
+	"description": "Slack like emoji selector with apple, twitter, google, emojion, facebook, messenger and custom emoji support.",
 	"dependencies": {
 		"js-emoji": "^3.1.1"
 	}

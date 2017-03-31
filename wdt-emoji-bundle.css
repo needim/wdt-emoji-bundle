@@ -148,7 +148,7 @@ body[data-wdt-emoji-bundle='apple'] .wdt-emoji[data-has-img-apple='false'] {
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-
+  overflow-anchor: none;
   height: 257px;
   padding-bottom: 30px;
 }

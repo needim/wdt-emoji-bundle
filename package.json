@@ -1,8 +1,8 @@
 {
   "name": "wdt-emoji-bundle",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "title": "wdt-emoji-bundle - Emoji picker",
-  "description": "Slack like emoji selector with apple, twitter, google, emojione and custom emoji support.",
+  "description": "Slack like emoji selector with apple, twitter, google, emojione, facebook, messenger and custom emoji support.",
   "homepage": "http://ned.im/wdt-emoji-bundle",
   "keywords": [
     "emoji",
@@ -29,9 +29,11 @@
   "main": "wdt-emoji-bundle.js",
   "dependencies": {},
   "devDependencies": {
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-bump": "^1.0.0",
+    "gulp-download-stream": "0.0.13",
     "gulp-rename": "^1.2.2",
+    "gulp-shell": "^0.6.3",
     "gulp-uglify": "^1.5.1"
   }
 }
