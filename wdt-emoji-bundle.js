@@ -11,7 +11,7 @@
   if (typeof define === 'function' && define.amd) {
     define(['js-emoji'], factory);
   } else if (typeof exports === 'object') {
-    module.exports = factory(require('js-emoji'));
+    module.exports = factory(require('emoji-js'));
   } else {
     root.wdtEmojiBundle = factory(root.EmojiConvertor);
   }
