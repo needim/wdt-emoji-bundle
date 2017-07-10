@@ -70,6 +70,9 @@
     self.emoji.img_sets['facebook']['sheet'] = this.defaults.emojiSheets.facebook;
     self.emoji.img_sets['messenger']['sheet'] = this.defaults.emojiSheets.messenger;
 
+    // to use emoji bundle without textarea
+    if (!selector) return self;
+
     self.selector = selector;
     self.elements = document.querySelectorAll(selector);
 
@@ -854,7 +857,7 @@
       el.selectionStart = el.selectionEnd = (textBefore.length + emo.length);
       el.focus();
     }
-  }; 
+  };
 
   /**
    * Fire custom events
