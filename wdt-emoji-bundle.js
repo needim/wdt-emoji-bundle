@@ -515,6 +515,16 @@
 
   /**
    *
+   * @returns {void}
+   */
+  wdtEmojiBundle.unbindEvents = function() {
+  	var EventList = ['click.wdtEmojiBundle','mouseover.wdtEmojiBundle','mouseout.wdtEmojiBundle','click.wdtEmojiBundle','input.wdtEmojiBundle'];
+	for (var i in EventList)
+		$(document).off(EventList[i]);
+  };
+
+  /**
+   *
    * @param q
    * @returns {boolean}
    */
