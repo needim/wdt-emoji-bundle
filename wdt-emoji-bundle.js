@@ -1,6 +1,6 @@
 /*!
  @package wdt-emoji-bundle - Slack like emoji selector with apple, twitter, google, emojione and custom emoji support.
- @version version: 0.2.0
+ @version version: 0.2.1
  @contributors https://github.com/needim/wdt-emoji-bundle/graphs/contributors
  @documentation Examples and Documentation - http://ned.im/wdt-emoji-bundle/
  @license Licensed under the MIT licenses: http://www.opensource.org/licenses/mit-license.php
