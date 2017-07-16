@@ -51,11 +51,15 @@
   /**
    * Init the bundle with selector, YAY!
    */
-  wdtEmojiBundle.init = function (selector) {
+  wdtEmojiBundle.init = function (selector, context) {
 
     var self = this;
 
     // emoji.js overrides
+
+    if(!context){
+      context= document;
+    }
 
     self.emoji = new EmojiConvertor();
 
@@ -71,7 +75,7 @@
     self.emoji.img_sets['messenger']['sheet'] = this.defaults.emojiSheets.messenger;
 
     self.selector = selector;
-    self.elements = document.querySelectorAll(selector);
+    self.elements = context.querySelectorAll(selector);
 
     self.popup = document.querySelector('.wdt-emoji-popup');
     self.scroller = self.popup.querySelector('.wdt-emoji-scroll-wrapper');
@@ -854,7 +858,7 @@
       el.selectionStart = el.selectionEnd = (textBefore.length + emo.length);
       el.focus();
     }
-  }; 
+  };
 
   /**
    * Fire custom events
