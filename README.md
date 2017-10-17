@@ -36,10 +36,16 @@ wdtEmojiBundle.defaults.emojiSheets.messenger = './sheet_messenger.png';  // def
 
 ===
 
-Set emoji set default sheet
+Set emoji set default sheet (this has to be done before the init)
 
 ```javascript
-wdtEmojiBundle.defaults.type = 'apple';
+wdtEmojiBundle.defaults.emojiType = 'apple';
+```
+
+otherwise use
+
+```javascript
+wdtEmojiBundle.changeType(emojiType);
 ```
 
 ===
