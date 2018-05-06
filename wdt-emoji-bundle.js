@@ -659,7 +659,7 @@
       }
     });
 
-    addListenerMulti(el, 'mouseup keyup', function () {
+    addListenerMulti(el, 'focus mouseup keyup input', function () {
       wdtEmojiBundle.ranges[this.dataset.rangeIndex] = window.getSelection().getRangeAt(0);
     });
 
