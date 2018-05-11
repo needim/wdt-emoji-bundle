@@ -549,10 +549,9 @@
 
     for (var i = 0; i < emojiList.length; i++) {
       var emo = emojiList[i];
-      var sst = emo.dataset.wdtEmojiName + ' ' + emo.dataset.wdtEmojiShortnames;
 
       removeClass(emo, 'not-matched');
-      if (sst.match(new RegExp(q, "gi"))) {
+      if (emo.dataset.wdtEmojiShortnames.match(new RegExp(q, "gi"))) {
         found++;
       } else {
         addClass(emo, 'not-matched');
