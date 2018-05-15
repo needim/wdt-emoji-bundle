@@ -176,9 +176,9 @@
     var element = ev.target,
         parent = findParent(element, 'wdt-emoji-picker-parent'),
         emojiPicker = findChild(parent, 'wdt-emoji-picker'),
-        val = element.value,
+        val = element.value || element.textContent,
         selection = getSelection(element),
-        textBeforeCursor = val.substring(0, selection.start),
+        textBeforeCursor = val.substring(0, selection.start || window.getSelection().anchorOffset),
         // `<space>:` OR `^:` followed by text
         // text is captured
         matches = textBeforeCursor.match(/(\s|^):(\S*)$/),
@@ -839,12 +839,25 @@
    * @param emo
    */
   var replaceText = function (el, selection, emo) {
-    var val = el.value || el.innerHTML || '';
+    var val = el.textContent || el.value || el.innerHTML || '';
     emo = emo + ' '; //append a space
 
     if (selection.ce) { // if contenteditable
       el.focus();
-      document.execCommand('insertText', false, emo);
+      var sel = window.getSelection();
+      var textBefore = val.substring(0, sel.anchorOffset);
+      textBefore = textBefore.replace(/:\S*$/, '')
+      el.textContent = textBefore + emo + val.substring(sel.focusOffset, val.length);
+
+      // @todo - [needim] - check browser compatibilities
+      var caret = textBefore.length + emo.length;
+      var range = document.createRange();
+      var textNode = el.firstChild;
+      range.setStart(textNode, caret);
+      range.setEnd(textNode, caret);
+
+      sel.removeAllRanges();
+      sel.addRange(range);
     } else {
       var textBefore = val.substring(0, selection.start);
       textBefore = textBefore.replace(/:\S*$/, '')
