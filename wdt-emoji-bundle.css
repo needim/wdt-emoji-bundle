@@ -67,7 +67,7 @@ body[data-wdt-emoji-bundle='apple'] .wdt-emoji[data-has-img-apple='false'] {
   opacity: 1;
 }
 
-#wdt-emoji-menu-header {
+.wdt-emoji-menu-header {
   padding: 4px 0 0 7px;
 
   border-bottom: 1px solid rgba(0, 0, 0, .15);
@@ -100,8 +100,8 @@ body[data-wdt-emoji-bundle='apple'] .wdt-emoji[data-has-img-apple='false'] {
   border-bottom: 3px solid #e7543d;
 }
 
-#wdt-emoji-search,
-#wdt-emoji-search:focus {
+.wdt-emoji-search,
+.wdt-emoji-search:focus {
   font-size: 15px;
   line-height: 20px;
 
@@ -119,7 +119,7 @@ body[data-wdt-emoji-bundle='apple'] .wdt-emoji[data-has-img-apple='false'] {
   outline: none;
 }
 
-#wdt-emoji-search:focus {
+.wdt-emoji-search:focus {
   border-color: #a0a0a0;
 }
 
@@ -271,7 +271,7 @@ img.emoji {
   height: 1em;
 }
 
-#wdt-emoji-footer {
+.wdt-emoji-footer {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -283,7 +283,7 @@ img.emoji {
   background: #f7f7f7;
 }
 
-#wdt-emoji-no-result {
+.wdt-emoji-no-result {
   font-size: 10px;
   font-weight: 400;
 
@@ -296,7 +296,7 @@ img.emoji {
   color: #bababa;
 }
 
-#wdt-emoji-preview {
+.wdt-emoji-preview {
   padding: .3rem 0 0 .7rem;
 
   -webkit-transition: opacity .1s ease-in .1s;
@@ -306,7 +306,7 @@ img.emoji {
   opacity: 0;
 }
 
-#wdt-emoji-preview-img {
+.wdt-emoji-preview-img {
   font-size: 2rem;
   line-height: 2rem;
 
@@ -319,7 +319,7 @@ img.emoji {
   vertical-align: middle;
 }
 
-#wdt-emoji-preview-bundle {
+.wdt-emoji-preview-bundle {
   font-size: 17px;
   font-weight: bold;
 
@@ -335,13 +335,13 @@ img.emoji {
   color: #989ba0;
 }
 
-#wdt-emoji-search-result-title,
-#wdt-emoji-no-result {
+.wdt-emoji-search-result-title,
+.wdt-emoji-no-result {
   display: none;
 }
 
-#wdt-emoji-search-result-title.wdt-show,
-#wdt-emoji-no-result.wdt-show {
+.wdt-emoji-search-result-title.wdt-show,
+.wdt-emoji-no-result.wdt-show {
   display: block;
 
   margin: 0 5px;
@@ -355,15 +355,15 @@ img.emoji {
   display: none;
 }
 
-.wdt-emoji-popup.preview-mode #wdt-emoji-preview-bundle {
+.wdt-emoji-popup.preview-mode .wdt-emoji-preview-bundle {
   opacity: 0;
 }
 
-.wdt-emoji-popup.preview-mode #wdt-emoji-preview {
+.wdt-emoji-popup.preview-mode .wdt-emoji-preview {
   opacity: 1;
 }
 
-#wdt-emoji-preview-img span.emoji-outer.emoji-sizer {
+.wdt-emoji-preview-img span.emoji-outer.emoji-sizer {
   position: relative;
   top: 3px;
   left: 4px;
@@ -372,7 +372,7 @@ img.emoji {
   height: 40px;
 }
 
-#wdt-emoji-preview-text {
+.wdt-emoji-preview-text {
   font-size: 13px;
 
   position: relative;
@@ -382,7 +382,7 @@ img.emoji {
   color: #777;
 }
 
-#wdt-emoji-preview-name {
+.wdt-emoji-preview-name {
   font-weight: bold;
 
   position: relative;
@@ -433,7 +433,7 @@ and (orientation: portrait) {
     margin-right: 0 !important;
   }
 
-  #wdt-emoji-footer {
+  .wdt-emoji-footer {
     display: none;
   }
 
@@ -449,7 +449,7 @@ and (orientation: portrait) {
     border-radius: 0;
   }
 
-  #wdt-emoji-search {
+  .wdt-emoji-search {
     display: none;
   }
 
