@@ -652,7 +652,7 @@
     el.addEventListener('focus', function () {
       var s = window.getSelection();
       if (!wdtEmojiBundle.ranges[this.dataset.rangeIndex]) {
-        wdtEmojiBundle.ranges[this.dataset.rangeIndex] = new Range();
+        wdtEmojiBundle.ranges[this.dataset.rangeIndex] = document.createRange();
       } else if (s.rangeCount > 0) {
         s.removeAllRanges();
         s.addRange(wdtEmojiBundle.ranges[this.dataset.rangeIndex]);
